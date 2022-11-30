@@ -2,7 +2,7 @@
 #include<unistd.h>
 #include<sys/wait.h>
 int main(){
-    int fd[2];
+    int fd[2], n;
     char buffer[100];
     pid_t p;
     pipe(fd);
@@ -11,7 +11,7 @@ int main(){
     {
         printf("Parent passing value to child\n");
         write(fd[1], "hello\n", 6);      //fd[1] is the write end of the pipe
-        wait();
+        wait(NULL);
     }
     else       //child
     {
